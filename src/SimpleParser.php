@@ -32,19 +32,6 @@ class SimpleParser extends AbstractLineParser
     /**
      * {@inheritdoc}
      */
-    protected function prepareParsedData(array $matches)
-    {
-        // Remove indexed values
-        $filtered = array_filter(array_keys($matches), 'is_string');
-        $result = array_intersect_key($matches, array_flip($filtered));
-        $result = array_filter($result);
-
-        return $result;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function getPattern()
     {
         return $this->pattern;

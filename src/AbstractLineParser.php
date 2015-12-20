@@ -47,7 +47,15 @@ abstract class AbstractLineParser implements LineParserInterface
      *
      * @return array
      */
-    abstract protected function prepareParsedData(array $matches);
+    protected function prepareParsedData(array $matches)
+    {
+        // Remove indexed values
+        $filtered = array_filter(array_keys($matches), 'is_string');
+        $result = array_intersect_key($matches, array_flip($filtered));
+        $result = array_filter($result);
+
+        return $result;
+    }
 
     /**
      * Returns pattern of log line.
