@@ -1,8 +1,10 @@
 Server Log Parser
 =================
 
-[![Latest Stable Version](https://poser.pugx.org/mvar/log-parser/v/stable.png)](https://packagist.org/packages/mvar/log-parser)
-[![Build Status](https://travis-ci.org/mvar/log-parser.png?branch=master)](https://travis-ci.org/mvar/log-parser)
+[![Latest Stable Version](https://poser.pugx.org/mvar/log-parser/v/stable)](https://packagist.org/packages/mvar/log-parser)
+[![Build Status](https://travis-ci.org/mvar/log-parser.svg?branch=master)](https://travis-ci.org/mvar/log-parser)
+[![Code Coverage](https://scrutinizer-ci.com/g/mvar/log-parser/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mvar/log-parser/?branch=master)
+[![Code Quality](https://scrutinizer-ci.com/g/mvar/log-parser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mvar/log-parser/?branch=master)
 
 This library allows you to easily iterate over your Apache, nginx or any other
 web server log files.
@@ -16,15 +18,15 @@ Main features:
 Installation
 ------------
 
-This library can be found on [Packagist](https://packagist.org/packages/mvar/log-parser).
-The recommended way to install this is through [Composer](https://getcomposer.org):
+This library can be found on [Packagist][1].
+The recommended way to install this is through [Composer][2]:
 
 ```bash
 composer require mvar/log-parser:dev-master
 ```
 
-Usage
------
+Basic Usage
+-----------
 
 Lets say you have log file `my.log` with following content:
 
@@ -47,8 +49,9 @@ use MVar\LogParser\SimpleParser;
 // Pass your regular expression
 $parser = new SimpleParser('/(?<method>\S+)\s+(?<path>\S+)\s+(?<response_code>\d+)/');
 
-foreach (new LogIterator('access.log', $parser) as $data) {
+foreach (new LogIterator('my.log', $parser) as $data) {
     var_export($data);
+    echo "\n";
 }
 ```
 
@@ -76,9 +79,18 @@ $logFile = 'compress.zlib://file:///path/to/log.gz';
 How To
 ------
 
-- How to implement custom parser?
-    
-Contributing
-------------
+- [How to implement custom parser?](docs/custom_parser.md)
 
-TODO
+Implemented Parsers
+---
+
+- [mvar/apache2-lo-parser][3] - Apache access/error log parser based on this library
+
+License
+-------
+
+This package is licensed under the MIT License. See the LICENSE file for details.
+
+[1]: https://packagist.org/packages/mvar/log-parser
+[2]: https://getcomposer.org
+[3]: https://github.com/mvar/apache2-log-parser
