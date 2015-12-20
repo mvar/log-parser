@@ -1,0 +1,30 @@
+{
+    "name": "mvar/log-parser",
+    "description": "Universal log parser",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mantas Varatiejus",
+            "email": "var.mantas@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
+    },
+    "suggest": {
+        "mvar/apache2-log-parser": "Allows to easily parse Apache web server log files"
+    },
+    "autoload": {
+        "psr-4": {
+            "MVar\\LogParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MVar\\LogParser\\Tests\\": "tests/"
+        }
+    }
+}
