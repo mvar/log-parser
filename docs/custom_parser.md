@@ -75,6 +75,6 @@ array (
 Links
 ---
 
-- [mvar/apache2-lo-parser][1] - Apache access/error log parser based on this library
+- [mvar/apache2-log-parser][1] - Apache access/error log parser based on this library
 
 [1]: https://github.com/mvar/apache2-log-parser

@@ -84,7 +84,7 @@ How To
 Implemented Parsers
 ---
 
-- [mvar/apache2-lo-parser][3] - Apache access/error log parser based on this library
+- [mvar/apache2-log-parser][3] - Apache access/error log parser based on this library
 
 License
 -------
