@@ -10,8 +10,9 @@
 namespace MVar\LogParser\Tests;
 
 use MVar\LogParser\SimpleParser;
+use PHPUnit\Framework\TestCase;
 
-class SimpleParserTest extends \PHPUnit_Framework_TestCase
+class SimpleParserTest extends TestCase
 {
     /**
      * Test for parseLine().

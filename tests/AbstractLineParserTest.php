@@ -9,7 +9,10 @@
 
 namespace MVar\LogParser\Tests;
 
-class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
+use MVar\LogParser\AbstractLineParser;
+use PHPUnit\Framework\TestCase;
+
+class AbstractLineParserTest extends TestCase
 {
     /**
      * Creates and returns instance of AbstractLineParser mock.
@@ -18,10 +21,9 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
      */
     protected function getParser()
     {
-        $mock = $this->getMock(
-            '\\MVar\\LogParser\\AbstractLineParser',
-            ['prepareParsedData', 'getPattern']
-        );
+        $mock = $this->getMockBuilder(AbstractLineParser::class)
+            ->setMethods(['prepareParsedData', 'getPattern'])
+            ->getMock();
 
         return $mock;
     }

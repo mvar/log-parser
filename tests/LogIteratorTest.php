@@ -12,8 +12,9 @@ namespace MVar\LogParser\Tests;
 use MVar\LogParser\LineParserInterface;
 use MVar\LogParser\LogIterator;
 use MVar\LogParser\Exception\MatchException;
+use PHPUnit\Framework\TestCase;
 
-class LogIteratorTest extends \PHPUnit_Framework_TestCase
+class LogIteratorTest extends TestCase
 {
     /**
      * Creates and returns instance of parser mock.
@@ -22,7 +23,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
      */
     protected function getParser()
     {
-        return $this->getMock('\\MVar\\LogParser\\LineParserInterface');
+        return $this->createMock(LineParserInterface::class);
     }
 
     /**
@@ -47,7 +48,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
 
         foreach ($iterator as $line => $data) {
             $this->assertTrue(is_string($line));
-            $this->assertEquals($data, $expectedData);
+            $this->assertEquals($expectedData, $data);
         }
     }
 
@@ -77,6 +78,33 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
 
         // Test if empty line was not parsed (NULL)
         $expectedResult = ['parsed_line', null, 'parsed_line'];
+
+        $this->assertEquals($expectedResult, $result);
+    }
+
+    /**
+     * Test for iterator in case of empty lines in log.
+     */
+    public function testIteratorWithWhitespaceLines()
+    {
+        $parser = $this->getParser();
+
+        $parser->expects($this->any())
+            ->method('parseLine')
+            ->willReturnArgument(0);
+
+        $iterator = new LogIterator(__DIR__ . '/Fixtures/custom.log', $parser);
+
+        $result = [];
+        foreach ($iterator as $data) {
+            $result[] = $data;
+        }
+
+        // Test if leading whitespaces were not trimmed
+        $expectedResult = [
+            '2016-03-01T22:22:37.800861Z 0 [Note] InnoDB: Progress in MB:',
+            ' 100 200',
+        ];
 
         $this->assertEquals($expectedResult, $result);
     }
