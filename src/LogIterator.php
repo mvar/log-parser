@@ -100,7 +100,7 @@ class LogIterator implements \Iterator
 
                 return;
             }
-            $buffer = trim($buffer);
+            $buffer = trim($buffer, "\n\r\0");
 
             if (!$this->skipEmptyLines) {
                 break;

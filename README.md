@@ -22,7 +22,7 @@ This library can be found on [Packagist][1].
 The recommended way to install this is through [Composer][2]:
 
 ```bash
-composer require mvar/log-parser:dev-master
+composer require mvar/log-parser:^1.0
 ```
 
 Basic Usage
